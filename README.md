@@ -630,11 +630,17 @@ Expected output: `"method": "rule"` with confidence ~0.1-0.8
 # Start server on default port 5050
 python3 api_server.py &
 
+# Wait for server to start (3-5 seconds)
+sleep 5
+
+# Test health endpoint first
+curl -X GET http://localhost:5050/health
+
 # Test categorization endpoint
 curl -X POST http://localhost:5050/categorize -H "Content-Type: application/json" -d '{"messages": ["Test message"]}'
 
-# Test health endpoint
-curl -X GET http://localhost:5050/health
+# Stop server when done
+pkill -f api_server.py
 ```
 
 ### Expected Performance by Method
