@@ -1,0 +1,10 @@
+{
+  "bug_report": "Bug reports and error messages",
+  "feature_request": "Requests for new features or improvements",
+  "user_onboarding": "Questions about getting started or setup",
+  "account_management": "Account-related issues and requests",
+  "payment_issue": "Payment, billing, and subscription problems",
+  "product_feedback": "User feedback about the product",
+  "general_support": "General support questions",
+  "other": "Uncategorized messages"
+} 
