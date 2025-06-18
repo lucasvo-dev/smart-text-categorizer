@@ -17,6 +17,14 @@ A robust text categorization system that classifies user messages into high-leve
 - **Robust Fallbacks**: Works even without internet/API access
 - **Detailed Explanations**: Shows reasoning for each classification
 
+## 🎥 Demo Video
+
+Watch the complete demo and testing of Smart Text Categorizer:
+
+[![Smart Text Categorizer Demo](https://img.youtube.com/vi/VFaKGubkerc/0.jpg)](https://youtu.be/VFaKGubkerc?si=mQa61qGXO4NKbyTU)
+
+_Click the image above to watch the demo video_
+
 ## 🚀 Quick Start
 
 ### Complete Setup
