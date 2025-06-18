@@ -558,13 +558,13 @@ def main():
     print(f"\n🧠 Categorizing {len(messages)} messages...\n")
     results = categorizer.categorize_batch(messages, custom_categories)
     
-    # Format output
+    # Format output - ensure all numeric values are JSON serializable
     output_data = {
         "results": [
             {
                 "message": r.message,
                 "category": r.category,
-                "confidence": r.confidence,
+                "confidence": float(r.confidence),  # Convert to Python float
                 "explanation": r.explanation,
                 "method": r.method
             }
@@ -573,7 +573,7 @@ def main():
         "summary": {
             "total_messages": len(messages),
             "categories_used": list(set(r.category for r in results)),
-            "avg_confidence": sum(r.confidence for r in results) / len(results)
+            "avg_confidence": float(sum(r.confidence for r in results) / len(results))  # Convert to Python float
         }
     }
     
