@@ -21,28 +21,41 @@ A robust text categorization system that classifies user messages into high-leve
 
 ### Complete Setup
 
-1. **Install dependencies:**
+1. **Create and activate virtual environment (recommended):**
+
+```bash
+python3 -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+Or use the provided activation script:
+
+```bash
+source activate_env.sh
+```
+
+2. **Install dependencies:**
 
 ```bash
 pip install -r requirements.txt
 ```
 
-2. **Download models (optional - recommended for faster startup):**
+3. **Download models (optional - recommended for faster startup):**
 
 ```bash
 python3 setup_models.py
 ```
 
-3. **Set up OpenAI API (optional for LLM features):**
+4. **Set up OpenAI API (optional for LLM features):**
 
 ```bash
 echo "OPENAI_API_KEY=your-api-key-here" > .env
 ```
 
-4. **Test the system:**
+5. **Test the system:**
 
 ```bash
-python3 text_categorizer.py --messages "I can't login" "Great service"
+python3 text_categorizer.py --messages "I lost my password" "Great service"
 ```
 
 ### Installation Only
@@ -50,12 +63,43 @@ python3 text_categorizer.py --messages "I can't login" "Great service"
 For minimal setup without model pre-download:
 
 ```bash
+# Create virtual environment (recommended)
+python3 -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
 pip install -r requirements.txt
 ```
 
 **Note**: The ~90MB `all-MiniLM-L6-v2` model will be downloaded automatically on first use. This may take a few minutes on the first run but will be cached locally for subsequent uses.
 
 ### Environment Setup
+
+#### Virtual Environment (Recommended)
+
+To avoid conflicts with system packages:
+
+```bash
+# Create virtual environment
+python3 -m venv venv
+
+# Activate virtual environment
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Deactivate when done
+deactivate
+```
+
+Use the provided activation script for convenience:
+
+```bash
+source activate_env.sh
+```
+
+#### OpenAI API Key
 
 For LLM features, set your OpenAI API key:
 
