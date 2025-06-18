@@ -533,7 +533,6 @@ Example response:
 1. **Primary**: OpenAI LLM for nuanced understanding (highest accuracy)
 2. **Secondary**: Sentence Transformers for semantic similarity (lazy-loaded fallback)
 3. **Tertiary**: Rule-based patterns for reliability (fastest fallback)
-4. **Special**: Ambiguous message detection (runs first)
 
 **Smart Resource Management**: Sentence Transformers are only loaded when LLM fails, saving memory and startup time when LLM is available.
 
