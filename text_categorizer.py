@@ -479,6 +479,29 @@ The confidence should be between 0.0 and 1.0. Be conservative with confidence sc
             method='rule'
         )
     
+    def format_results_for_output(self, results: List[CategoryResult]) -> Dict[str, Any]:
+        """
+        Common service method to format categorization results for output
+        Ensures all numeric values are JSON serializable
+        """
+        return {
+            "results": [
+                {
+                    "message": r.message,
+                    "category": r.category,
+                    "confidence": float(r.confidence),  # Convert to Python float
+                    "explanation": r.explanation,
+                    "method": r.method
+                }
+                for r in results
+            ],
+            "summary": {
+                "total_messages": len(results),
+                "categories_used": list(set(r.category for r in results)),
+                "avg_confidence": float(sum(r.confidence for r in results) / len(results)) if results else 0.0  # Convert to Python float
+            }
+        }
+
     def handle_ambiguous_message(self, message: str) -> CategoryResult:
         """Special handling for ambiguous messages"""
         ambiguous_indicators = [
@@ -559,23 +582,7 @@ def main():
     results = categorizer.categorize_batch(messages, custom_categories)
     
     # Format output - ensure all numeric values are JSON serializable
-    output_data = {
-        "results": [
-            {
-                "message": r.message,
-                "category": r.category,
-                "confidence": float(r.confidence),  # Convert to Python float
-                "explanation": r.explanation,
-                "method": r.method
-            }
-            for r in results
-        ],
-        "summary": {
-            "total_messages": len(messages),
-            "categories_used": list(set(r.category for r in results)),
-            "avg_confidence": float(sum(r.confidence for r in results) / len(results))  # Convert to Python float
-        }
-    }
+    output_data = categorizer.format_results_for_output(results)
     
     # Output results
     if args.output:

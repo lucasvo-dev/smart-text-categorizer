@@ -32,24 +32,8 @@ def categorize_messages():
         # Categorize messages
         results = categorizer.categorize_batch(messages, custom_categories)
         
-        # Format response
-        response = {
-            'results': [
-                {
-                    'message': r.message,
-                    'category': r.category,
-                    'confidence': r.confidence,
-                    'explanation': r.explanation,
-                    'method': r.method
-                }
-                for r in results
-            ],
-            'summary': {
-                'total_messages': len(messages),
-                'categories_used': list(set(r.category for r in results)),
-                'avg_confidence': sum(r.confidence for r in results) / len(results) if results else 0
-            }
-        }
+        # Format response using shared service method
+        response = categorizer.format_results_for_output(results)
         
         return jsonify(response)
     
